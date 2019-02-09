@@ -1,0 +1,8 @@
+xterm*background: black
+xterm*foreground: gray
+xterm*VT100.Translations: #override\n\
+	Ctrl Shift <Key>C: string(0x03)\n\
+	Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
+	Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n\
+	Ctrl <Key> minus: smaller-vt-font() \n\
+	Ctrl <Key> equal: larger-vt-font() \n\
