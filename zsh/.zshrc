@@ -63,12 +63,12 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git,
-  python,
-  django,
-  pip,
-  virtualenv,
-  zsh-autosuggestions
+	git,
+	python,
+	django,
+	pip,
+	virtualenv,
+	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,4 +101,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias photoshop='wine /home/aasmpro/.local/share/Photoshop19/PhotoshopPortable.exe'
