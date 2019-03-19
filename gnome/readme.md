@@ -7,7 +7,9 @@ folders for extensions are
 ```
 
 installing user themes extension
-```sudo apt install gnome-shell-extensions```
+```
+sudo apt install gnome-shell-extensions
+```
 
 following extensions are used
 
@@ -29,7 +31,9 @@ removeing unuseable extensions
 sudo rm -rf auto-move-windows@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com drive-menu@gnome-shell-extensions.gcampax.github.com launch-new-instance@gnome-shell-extensions.gcampax.github.com native-window-placement@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com ubuntu-dock@ubuntu.com ubuntu-appindicators@ubuntu.com window-list@gnome-shell-extensions.gcampax.github.com windowsNavigator@gnome-shell-extensions.gcampax.github.com workspace-indicator@gnome-shell-extensions.gcampax.github.com
 ```
 removing ubuntu dock
-```sudo apt remove gnome-shell-extension-ubuntu-dock```
+```
+sudo apt remove gnome-shell-extension-ubuntu-dock
+```
 
 restart gnome shell after removing extensions
 
