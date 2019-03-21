@@ -48,6 +48,8 @@ https://github.com/nana-4/materia-theme
 ```
 https://github.com/nana-4/materia-theme/blob/master/src/gnome-shell/README.md
 ```
+for increasing clock font size on lock screen edit `.screen-shield-clock-time` in `/usr/share/gnome-shell/theme/gdm3.css` file.
+also cusomized `gdm3.css` file added.
 
 ### icon themes
 * papirus
