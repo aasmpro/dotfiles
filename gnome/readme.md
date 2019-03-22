@@ -24,6 +24,7 @@ following extensions are used
 * Remove app menu
 * Remove dropdown arrows
 * Remove rounded corners
+* Hide workspace thumbnails
 * Appfolders Management extension
 
 removeing unuseable extensions
