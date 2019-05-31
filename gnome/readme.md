@@ -20,16 +20,16 @@ following extensions are used
 * Dash to panel
 * Unblanck screen saver
 * More columns in applications view
-* No spring
 * Remove app menu
 * Remove dropdown arrows
 * Remove rounded corners
 * Hide workspace thumbnails
 * Appfolders Management extension
+* CustomCorner
 
 removeing unuseable extensions
 ```
-sudo rm -rf auto-move-windows@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com drive-menu@gnome-shell-extensions.gcampax.github.com launch-new-instance@gnome-shell-extensions.gcampax.github.com native-window-placement@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com ubuntu-dock@ubuntu.com ubuntu-appindicators@ubuntu.com window-list@gnome-shell-extensions.gcampax.github.com windowsNavigator@gnome-shell-extensions.gcampax.github.com workspace-indicator@gnome-shell-extensions.gcampax.github.com
+cd ~/.local/share/gnome-shell/extensions && sudo rm -rf auto-move-windows@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com drive-menu@gnome-shell-extensions.gcampax.github.com launch-new-instance@gnome-shell-extensions.gcampax.github.com native-window-placement@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com ubuntu-dock@ubuntu.com ubuntu-appindicators@ubuntu.com window-list@gnome-shell-extensions.gcampax.github.com windowsNavigator@gnome-shell-extensions.gcampax.github.com workspace-indicator@gnome-shell-extensions.gcampax.github.com desktop-icons@csoriano
 ```
 removing ubuntu dock
 ```
@@ -40,15 +40,15 @@ restart gnome shell after removing extensions
 
 ### GTK themes
 * materia
-```
-https://github.com/nana-4/materia-theme
-```
+
+[https://github.com/nana-4/materia-theme](https://github.com/nana-4/materia-theme)
+
 
 ### GDM themes
 * materia
-```
-https://github.com/nana-4/materia-theme/blob/master/src/gnome-shell/README.md
-```
+
+[https://github.com/nana-4/materia-theme/blob/master/src/gnome-shell/README.md](https://github.com/nana-4/materia-theme/blob/master/src/gnome-shell/README.md)
+
 for increasing clock font size on lock screen edit `.screen-shield-clock-time` in `/usr/share/gnome-shell/theme/ubuntu.css` file.
 also cusomized `ubuntu.css` file added.
 ```css
@@ -73,15 +73,15 @@ also cusomized `ubuntu.css` file added.
 
 ### icon themes
 * papirus
-```
-https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
-```
+
+[https://github.com/PapirusDevelopmentTeam/papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+
 
 ### cursor themes
 * capitaine
-```
-https://github.com/keeferrourke/capitaine-cursors
-```
+
+[https://github.com/keeferrourke/capitaine-cursors](https://github.com/keeferrourke/capitaine-cursors)
+
 
 ### fonts
 * google roboto
