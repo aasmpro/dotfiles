@@ -12,7 +12,7 @@ sudo e2fsck -b 214990848 /dev/sdb1 -y
 ```
 find . -iname "00*.py" -delete
 ```
-or by find by address and exclude environments too:
+or find by address and exclude environments too:
 ```
 find . -iwholename "*/migrations/00*.py" -not -path "*_env*" -delete
 ```
