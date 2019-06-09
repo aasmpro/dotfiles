@@ -12,6 +12,10 @@ sudo e2fsck -b 214990848 /dev/sdb1 -y
 ```
 find . -iname "00*.py" -delete
 ```
+or by find by address and exclude environments too:
+```
+find . -iwholename "*/migrations/00*.py" -not -path "*_env*" -delete
+```
 ### convert windows unicode to utf-8
 ```
 iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT subtitle.srt >> new_subtitle.srt
