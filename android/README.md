@@ -1,4 +1,4 @@
-# Android configes
+## Android configes
 ## ADB
 install ADB using this command
 ```

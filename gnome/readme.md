@@ -1,4 +1,4 @@
-# gnome DE configes
+## gnome DE configes
 ### extensions
 folders for extensions are
 ```

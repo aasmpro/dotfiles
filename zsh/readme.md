@@ -1,4 +1,4 @@
-# zsh configes
+## zsh configes
 ### making zsh default shell
 ```
 chsh -s $(which zsh)

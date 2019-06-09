@@ -1,4 +1,4 @@
-# xfce4 configes
+## xfce4 configes
 ## debian buster
 ### enabling tap to click
 ```
@@ -23,7 +23,7 @@ sudo dpkg --add-architecture i386
 ```
 > for installing `steam` this is reaquired
 
-## themes
+### themes
 for refrence check [this](https://wiki.xfce.org/howto/install_new_themes) url.
 
 * copy `aasmpro` folder to `/usr/share/themes/`

@@ -1,4 +1,4 @@
-# tor configes
+## tor configes
 ### confige for firefox allowing .onion sites
 * copy `.tor_onion_firefox` to home (or any other path)
 * in firefox go to address `about:config`
