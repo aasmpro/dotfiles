@@ -24,3 +24,7 @@ iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT subtitle.srt >> new_subtitle.srt
 ```
 sudo dd bs=4M if=file.iso of=/dev/sdx conv=fdatasync
 ```
+### merging pdf files
+```
+pdftk file1.pdf file2.pdf cat output out.pdf
+```
