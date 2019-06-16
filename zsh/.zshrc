@@ -101,5 +101,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias photoshop="wine /home/aasmpro/.photoshop/PhotoshopPortable.exe"
-PATH=$PATH+':/home/aasmpro/.local/bin:/snap/bin'
+alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
+PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:"+$PATH
