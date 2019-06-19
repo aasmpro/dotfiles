@@ -1,4 +1,13 @@
 ## gnome DE configes
+### fixing firefox in dark themes
+* open `about:config` in firefox
+* creat new `string value` with following data:
+```
+name   >> widget.content.gtk-theme-override
+value  >> Adwaita:light
+```
+* save and restart firefox
+
 ### extensions
 folders for extensions are
 ```
