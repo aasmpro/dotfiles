@@ -20,6 +20,11 @@ installing user themes extension
 sudo apt install gnome-shell-extensions
 ```
 
+you can also install extensions using:
+```
+https://extensions.gnome.org
+```
+
 following extensions are used
 
 * Alternatetab
