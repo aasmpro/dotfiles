@@ -127,7 +127,7 @@ alias djma="python manage.py makemigrations"
 alias djmi="python manage.py migrate"
 
 # env aliases
-alias ve="virtaulenv _env"
+alias ve="virtualenv _env"
 alias sa="source _env/bin/activate && which python"
 alias da="deactivate"
 
