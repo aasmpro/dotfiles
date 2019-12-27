@@ -8,7 +8,9 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+DEFAULT_USER="aasmpro"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -64,11 +66,18 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	gitfast
+
 	python
 	django
 	pip
 	virtualenv
+
 	zsh-autosuggestions
+
+	node
+	npm
+	yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -99,7 +108,31 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vzsh="vim ~/.zshrc"
+
+# python aliases
+alias py="python"
+alias pyc="python -c"
+
+# pip aliases
+alias pir="pip install -r requirements.txt"
+alias pin="pip install"
+alias pif="pip freeze > requirements.txt"
+alias piu="python -m pip install -U pip --user"
+
+# django
+alias djm="python manage.py"
+alias djs="python manage.py shell"
+alias djma="python manage.py makemigrations"
+alias djmi="python manage.py migrate"
+
+# env aliases
+alias ve="virtaulenv _env"
+alias sa="source _env/bin/activate && which python"
+alias da="deactivate"
+
+# programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
+alias pycharm="pycharm-professional"
+
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:"+$PATH
