@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias vzsh="vim ~/.zshrc"
+alias szsh="source ~/.zshrc"
 
 # python aliases
 alias py="python"
@@ -117,19 +118,45 @@ alias pyc="python -c"
 # pip aliases
 alias pir="pip install -r requirements.txt"
 alias pin="pip install"
+alias pun="pip uninstall"
 alias pif="pip freeze > requirements.txt"
-alias piu="python -m pip install -U pip --user"
+alias pil="pip list"
+alias pup="python -m pip install -U pip --user"
 
-# django
-alias djm="python manage.py"
-alias djs="python manage.py shell"
-alias djma="python manage.py makemigrations"
-alias djmi="python manage.py migrate"
+# django aliases
+alias dj="python manage.py"
+alias djr="dj runserver"
+alias djs="dj shell"
+alias djcr="dj createsuperuser"
+alias djc="djcr --username aasmpro"
+alias djco="dj collectstatic"
+alias djma="dj makemigrations"
+alias djmi="dj migrate"
+alias djsa="dj startapp"
+alias djld="dj loaddata"
+alias djt="dj test"
+alias djfm='find . -iwholename "*/migrations/00*.py" -not -path "*_env*"'
 
 # env aliases
-alias ve="virtualenv _env"
+alias vc="virtualenv _env"
+alias vd="rm -rf _env"
 alias sa="source _env/bin/activate && which python"
 alias da="deactivate"
+
+# git aliases
+alias ggg="gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && gcd"
+
+# database aliases
+alias dbm='mysql -u root -p'
+alias dbe='mysql -u root -p -e'
+alias dbgsp='scp spider:$(ssh spider "ls -t /home/reza/backup/t2b-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/t2b_db.tar.gz'
+alias dbgpa='scp spider:$(ssh spider "ls -t /home/reza/backup/panda-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/panda_db.tar.gz'
+alias dbxsp='dbgsp && tar -C /tmp -xf /tmp/t2b_db.tar.gz'
+alias dbxpa='dbgpa && tar -C /tmp -xf /tmp/panda_db.tar.gz'
+alias dbcsp='mysql -u root -p -e "drop database IF EXISTS spider; create database spider;"'
+alias dbcpa='mysql -u root -p -e "drop database IF EXISTS panda; create database panda;"'
+alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
+alias dbpa='dbxpa && mysql -u root -p -e "drop database IF EXISTS panda; create database panda; use panda; source /tmp/latest_backup.sql;"'
 
 # programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
