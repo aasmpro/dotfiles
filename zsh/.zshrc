@@ -158,6 +158,10 @@ alias dbcpa='mysql -u root -p -e "drop database IF EXISTS panda; create database
 alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
 alias dbpa='dbxpa && mysql -u root -p -e "drop database IF EXISTS panda; create database panda; use panda; source /tmp/latest_backup.sql;"'
 
+# network aliases
+alias iip='nmap -sP 192.168.1.0/24 | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//"'
+alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
+
 # programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
 alias pycharm="pycharm-professional"
