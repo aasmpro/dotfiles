@@ -108,8 +108,9 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
+alias vzsh="vim ~/.zshrc && szsh"
+alias gzsh="gedit ~/.zshrc && szsh"
 
 # python aliases
 alias py="python"
@@ -159,8 +160,11 @@ alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create
 alias dbpa='dbxpa && mysql -u root -p -e "drop database IF EXISTS panda; create database panda; use panda; source /tmp/latest_backup.sql;"'
 
 # network aliases
-alias iip='nmap -sP 192.168.1.0/24 | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//"'
+alias wre='nmcli device wifi rescan'
+alias wls='wre && nmcli device wifi list'
+alias wco='wre && nmcli device wifi connect'
 alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
+alias iip='nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//"'
 
 # programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
