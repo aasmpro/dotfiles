@@ -164,7 +164,7 @@ alias wre='nmcli device wifi rescan'
 alias wls='wre && nmcli device wifi list'
 alias wco='wre && nmcli device wifi connect'
 alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
-alias iip='nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//"'
+alias iip='nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)/ */"'
 
 # programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
