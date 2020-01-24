@@ -106,11 +106,22 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
+
+# base aliases
 alias szsh="source ~/.zshrc"
 alias vzsh="vim ~/.zshrc && szsh"
 alias gzsh="gedit ~/.zshrc && szsh"
+# alias cdd='_cdd() { cd ~/dev/"$1" }; _cdd'
+alias cds="cd ~/dev/t2b/spider && sa"
+alias cdp="cd ~/dev/t2b/panda && sa"
+
+
+# network aliases
+alias wre='nmcli device wifi rescan'
+alias wls='wre && nmcli device wifi list'
+alias wco='wre && nmcli device wifi connect'
+alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
+alias iip='ip=$(mip); nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)//" | sed "s|$ip|$ip *|"'
 
 # python aliases
 alias py="python"
@@ -122,11 +133,12 @@ alias pin="pip install"
 alias pun="pip uninstall"
 alias pif="pip freeze > requirements.txt"
 alias pil="pip list"
-alias pup="python -m pip install -U pip --user"
+alias pup="python -m pip install -U pip"
 
 # django aliases
 alias dj="python manage.py"
 alias djr="dj runserver"
+alias djrr="djr $(mip | sed "s/http:\/\///"):8000"
 alias djs="dj shell"
 alias djcr="dj createsuperuser"
 alias djc="djcr --username aasmpro"
@@ -158,13 +170,6 @@ alias dbcsp='mysql -u root -p -e "drop database IF EXISTS spider; create databas
 alias dbcpa='mysql -u root -p -e "drop database IF EXISTS panda; create database panda;"'
 alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
 alias dbpa='dbxpa && mysql -u root -p -e "drop database IF EXISTS panda; create database panda; use panda; source /tmp/latest_backup.sql;"'
-
-# network aliases
-alias wre='nmcli device wifi rescan'
-alias wls='wre && nmcli device wifi list'
-alias wco='wre && nmcli device wifi connect'
-alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
-alias iip='nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)/ */"'
 
 # programs aliases
 alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
