@@ -2,15 +2,15 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/aasmpro/.oh-my-zsh"
+  export ZSH='/home/aasmpro/.oh-my-zsh'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-DEFAULT_USER="aasmpro"
+ZSH_THEME='agnoster'
+DEFAULT_USER='aasmpro'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,12 +108,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # base aliases
-alias szsh="source ~/.zshrc"
-alias vzsh="vim ~/.zshrc && szsh"
-alias gzsh="gedit ~/.zshrc && szsh"
+alias szsh='source ~/.zshrc'
+alias vzsh='vim ~/.zshrc && szsh'
+alias gzsh='gedit ~/.zshrc && szsh'
 # alias cdd='_cdd() { cd ~/dev/"$1" }; _cdd'
-alias cds="cd ~/dev/t2b/spider && sa"
-alias cdp="cd ~/dev/t2b/panda && sa"
+alias cds='cd ~/dev/t2b/spider && sa'
+alias cdp='cd ~/dev/t2b/panda && sa'
+alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _fsrt'
 
 
 # network aliases
@@ -124,40 +125,41 @@ alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\
 alias iip='ip=$(mip); nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)//" | sed "s|$ip|$ip *|"'
 
 # python aliases
-alias py="python"
-alias pyc="python -c"
+alias py='python'
+alias pyc='python -c'
 
 # pip aliases
-alias pir="pip install -r requirements.txt"
-alias pin="pip install"
-alias pun="pip uninstall"
-alias pif="pip freeze > requirements.txt"
-alias pil="pip list"
-alias pup="python -m pip install -U pip"
+alias pir='pip install -r requirements.txt'
+alias pin='pip install'
+alias pun='pip uninstall'
+alias pif='pip freeze > requirements.txt'
+alias pil='pip list'
+alias pup='python -m pip install -U pip'
 
 # django aliases
-alias dj="python manage.py"
-alias djr="dj runserver"
-alias djrr="djr $(mip | sed "s/http:\/\///"):8000"
-alias djs="dj shell"
-alias djcr="dj createsuperuser"
-alias djc="djcr --username aasmpro"
-alias djco="dj collectstatic"
-alias djma="dj makemigrations"
-alias djmi="dj migrate"
-alias djsa="dj startapp"
-alias djld="dj loaddata"
-alias djt="dj test"
+alias dj='python manage.py'
+alias djr='dj runserver'
+alias djrr='_djrr() { _ip=$(mip | head -n1 | sed "s|http://||"); djr $_ip:$([ -z "$1" ] && echo 8000 || echo $1) }; _djrr'
+alias djs='dj shell'
+alias djcr='dj createsuperuser'
+alias djc='djcr --username aasmpro'
+alias djco='dj collectstatic'
+alias djma='dj makemigrations'
+alias djmi='dj migrate'
+alias djsa='dj startapp'
+alias djsp='django-admin startproject'
+alias djld='dj loaddata'
+alias djt='dj test'
 alias djfm='find . -iwholename "*/migrations/00*.py" -not -path "*_env*"'
 
 # env aliases
-alias vc="virtualenv _env"
-alias vd="rm -rf _env"
-alias sa="source _env/bin/activate && which python"
-alias da="deactivate"
+alias vc='virtualenv _env'
+alias vd='rm -rf _env'
+alias sa='source _env/bin/activate && which python'
+alias da='deactivate'
 
 # git aliases
-alias ggg="gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && gcd"
+alias ggg='gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && gcd'
 
 # database aliases
 alias dbm='mysql -u root -p'
@@ -172,7 +174,9 @@ alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create
 alias dbpa='dbxpa && mysql -u root -p -e "drop database IF EXISTS panda; create database panda; use panda; source /tmp/latest_backup.sql;"'
 
 # programs aliases
-alias photoshop="wine $HOME/.photoshop/PhotoshopPortable.exe"
-alias pycharm="pycharm-professional"
+alias photoshop='wine $HOME/.photoshop/PhotoshopPortable.exe'
+alias ngrok='$HOME/.ngrok2/ngrok'
+alias pycharm='pycharm-professional'
+alias blastem='$HOME/.blastem/blastem'
 
-PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:"+$PATH
+PATH='$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:'+$PATH
