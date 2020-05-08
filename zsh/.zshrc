@@ -164,21 +164,30 @@ alias ggg='gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && 
 # database aliases
 alias dbm='mysql -u root -p'
 alias dbe='mysql -u root -p -e'
-alias dbgsp='scp spider:$(ssh spider "ls -t /home/reza/backup/t2b-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/t2b_db.tar.gz'
+# alias dbgsp='scp spider:$(ssh spider "ls -t /home/reza/backup/t2b-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/t2b_db.tar.gz'
 # alias dbgpa='scp spider:$(ssh spider "ls -t /home/reza/backup/panda-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/panda_db.tar.gz'
 alias dbxsp='dbgsp && tar -C /tmp -xf /tmp/t2b_db.tar.gz'
 alias dbxpa='dbgpa && tar -C /tmp -xf /tmp/panda_db.tar.gz'
 alias dbcsp='mysql -u root -p -e "drop database IF EXISTS spider; create database spider;"'
 alias dbcpa='mysql -u root -p -e "drop database IF EXISTS panda; create database panda;"'
 alias dbcpp='mysql -u root -p -e "drop database IF EXISTS poolipixel; create database poolipixel;"'
-alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
+# alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
 
 dbgpa() {
     ssh panda "ssh t2badmin@db1 'mysqldump -u root -p$1 panda > panda.sql'";
     ssh panda "scp t2badmin@db1:~/panda.sql .";
     scp panda:/home/t2badmin/panda.sql .;
 }
-alias dbpa='dbcpa && dbe "use panda; source panda.sql; set session sql_mode = ''; set global sql_mode = '';"'
+
+dbgsp() {
+    ssh spider "mysqldump -u root -p$1 t2bclub > ~/spider.sql";
+    ssh spider "zip -o spider.zip spider.sql";
+    scp spider:/home/reza/spider.zip .;
+    unzip -o spider.zip;
+}
+
+alias dbsp='dbcsp && dbe "use spider; source spider.sql; set session sql_mode = ""; set global sql_mode = "";"'
+alias dbpa='dbcpa && dbe "use panda; source panda.sql; set session sql_mode = ""; set global sql_mode = "";"'
 dbnpa() {
     dbgpa $1 && dbpa
 }
