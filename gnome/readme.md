@@ -1,10 +1,28 @@
 ## gnome DE configes
+
+### add .desktop files for app luncher
+these files must be in `~/.locale/share/applications` or for global access in `/usr/share/applications` dir.
+```
+[Desktop Entry]
+Name=Pycharm
+Comment=Pycharm prof
+Exec=/home/aasmpro/.pycharm/bin/pycharm.sh
+Icon=/home/aasmpro/.pycharm/bin/pycharm.png
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=Pycharm
+Encoding=UTF-8
+Categories=Application;
+MimeType=x-scheme-handler/pycharm;
+X-KDE-Protocols=pycharm
+```
+
 ### night light with command
 you can set a shortcut for with this command:
 ```
 bash -c "if [[ $(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled) == "true" ]]; then gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false; else gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true; fi"
 ```
-
 
 ### fixing firefox in dark themes
 * open `about:config` in firefox

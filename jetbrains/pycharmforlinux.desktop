@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Pycharm
+Comment=Pycharm prof
+Exec=/home/aasmpro/.pycharm/bin/pycharm.sh
+Icon=/home/aasmpro/.pycharm/bin/pycharm.png
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=Pycharm
+Encoding=UTF-8
+Categories=Application;
+MimeType=x-scheme-handler/pycharm;
+X-KDE-Protocols=pycharm
