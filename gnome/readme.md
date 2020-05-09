@@ -1,5 +1,18 @@
 ## gnome DE configes
 
+### Flat Remix theme
+[GTK theme](https://github.com/daniruiz/Flat-Remix-GTK)
+[Gnome theme](https://github.com/daniruiz/flat-remix-gnome)
+[Icons theme](https://github.com/daniruiz/Flat-Remix)
+
+### installing themes
+copy gtk and gnome themes in `/usr/share/themes` and icons in `/usr/share/icons` then set them with
+```
+gsettings set org.gnome.desktop.interface gtk-theme "custom-desktop-theme"
+gsettings set org.gnome.desktop.wm.preferences theme "custom-desktop-theme"
+gsettings set org.gnome.desktop.interface icon-theme "custom-icon-theme"
+```
+
 ### add .desktop files for app luncher
 these files must be in `~/.locale/share/applications` or for global access in `/usr/share/applications` dir.
 ```
