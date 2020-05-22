@@ -1,4 +1,8 @@
 ## some useful linux commands
+
+### fixing ntfs mount problems (nautilus or ...)
+just install `ntfs-3g` package
+
 ### superblock problems
 showing all superblock backups
 ```
