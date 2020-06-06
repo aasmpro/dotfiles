@@ -1,6 +1,6 @@
 #!/bin/bash
 declare -a tools=(
-    "PyCharm"
+    "pycharm"
     )
 
 for tool in "${tools[@]}"
