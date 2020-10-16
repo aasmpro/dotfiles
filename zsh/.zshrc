@@ -4,6 +4,12 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=vim
 
+# export http_proxy=http://127.0.0.1:37241/
+# export https_proxy=$http_proxy
+# export ftp_proxy=$http_proxy
+# export rsync_proxy=$http_proxy
+# export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+
 # ZSH_THEME="robbyrussell"
 ZSH_THEME='agnoster'
 DEFAULT_USER='aasmpro'
@@ -30,6 +36,13 @@ plugins=(
 	virtualenv
 
 	zsh-autosuggestions
+
+    celery
+    
+    systemadmin
+    encode64
+
+    docker
 
 	node
 	npm
@@ -90,6 +103,7 @@ alias djld='dj loaddata'
 alias djt='dj test'
 alias djfm='find . -iwholename "*/migrations/00*.py" -not -path "*_env*"'
 alias djbm='_djbm() { mkdir -p $1; djfm -exec cp --parents \{\} $1 \;}; _djbm'
+alias djcm='_djcm() { cp -r $1/. .}; _djcm'
 
 # env aliases
 alias vc='virtualenv _env'
@@ -99,6 +113,14 @@ alias da='deactivate'
 
 # git aliases
 alias ggg='gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && gcd'
+gmd() {
+    gco $1;
+    gm develop;
+    ggpush;
+    gcd;
+}
+alias gdd='gd develop'
+alias gdds='gd develop --stat'
 
 # database aliases
 alias dbm='mysql -u root'
@@ -140,6 +162,26 @@ deploy-panda() {
     echo 'app2 completed'
 }
 
+deploy-tb() {
+    echo 'deploying t2bon'
+    ssh panda "ssh app1 './scripts/front.t2bon-redeploy.sh'";
+    echo 'app1 completed'
+    ssh panda "ssh app2 './scripts/front.t2bon-redeploy.sh'";
+    echo 'app2 completed'
+}
+
+deploy-sc() {
+    echo 'deploying service center'
+    ssh panda "ssh app2 './scripts/front.sc.t2bon-redeploy.sh'";
+    echo 'app2 completed'
+}
+
+deploy-ag() {
+    echo 'deploying agent'
+    ssh panda "ssh app1 './scripts/front.agent-t2bon-redeploy.sh'";
+    echo 'app1 completed'
+}
+
 # aur
 aur() {
     rm -rf $HOME/.aur_tmp;
@@ -148,9 +190,22 @@ aur() {
     rm -rf $HOME/.aur_tmp;
 }
 
+# backup
+mbk() {
+    sudo mv $1 $1.back
+}
+
+ubk() {
+    sudo mv $1 $(sed 's/.\{5\}$//' <<< $1)
+}
+
+cbk() {
+    sudo cp -r $1 $1.back
+}
+
 # programs aliases
 alias photoshop='wine $HOME/.photoshop/PhotoshopPortable.exe'
 alias ngrok='$HOME/.ngrok2/ngrok'
 alias pycharm='$HOME/.pycharm/bin/pycharm.sh'
 
-PATH='$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:'+$PATH
+PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
