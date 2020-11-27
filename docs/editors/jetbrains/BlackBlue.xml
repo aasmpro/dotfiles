@@ -1,0 +1,25 @@
+<mtTheme>
+  <id>blackblue</id>
+  <editorColorsScheme>Black</editorColorsScheme>
+  <dark>true</dark>
+  <name>BlackBlue</name>
+  <colors>
+    <color id="background" value="000000ff"/>
+    <color id="foreground" value="c3c3c3ff"/>
+    <color id="text" value="4b4b4bff"/>
+    <color id="highlight" value="0f0f0fff"/>
+    <color id="selectionBackground" value="000000ff"/>
+    <color id="selectionForeground" value="ffffffff"/>
+    <color id="button" value="000000ff"/>
+    <color id="secondaryBackground" value="000000ff"/>
+    <color id="disabled" value="191919ff"/>
+    <color id="contrast" value="000000ff"/>
+    <color id="tableSelected" value="0f0f0fff"/>
+    <color id="secondBorder" value="232323ff"/>
+    <color id="treeSelection" value="000000ff"/>
+    <color id="notifications" value="000000ff"/>
+    <color id="accent" value="0059ffff"/>
+    <color id="excluded" value="000000ff"/>
+  </colors>
+  <themeId>blackblue</themeId>
+</mtTheme>
