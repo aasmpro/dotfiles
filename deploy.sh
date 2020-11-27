@@ -28,7 +28,7 @@ mv _site/* .
 echo "Cleaning up"
 rm -r _site
 echo "Commit and Push"
-git add *
+git add . -f
 git commit -m "deploy: new version"
 git push origin gh-pages
 echo "New Version Deployed!"
