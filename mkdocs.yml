@@ -34,22 +34,26 @@ plugins:
 
 theme:
   name: material
+  favicon: assets/images/favicon.png
   features:
     - navigation.tabs
   palette:
     scheme: slate
     primary: black
     accent: indigo
+  icon:
+    logo: assets/images/favicon.svg
+  logo: assets/images/favicon.svg
   # font:
   # text: https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf
   # code: Roboto Mono
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
-  - javascripts/tables.js
+  - assets/javascripts/tables.js
 
 extra_css:
-  - stylesheets/main.css
+  - assets/stylesheets/main.css
 
 use_directory_urls: true
 
