@@ -31,5 +31,6 @@ echo "Commit and Push"
 git add . -f
 git commit -m "deploy: new version"
 git push origin gh-pages
+git stash
 echo "New Version Deployed!"
-# git checkout master
+git checkout master
