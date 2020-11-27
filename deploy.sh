@@ -32,4 +32,4 @@ git add *
 git commit -m "deploy: new version"
 git push origin gh-pages
 echo "New Version Deployed!"
-git checkout master
+# git checkout master
