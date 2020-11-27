@@ -13,10 +13,9 @@ pip install -r requirements.txt
 
 ## Run
 
-=== "serve"
-` mkdocs serve `
-=== "custom port"
-` mkdocs serve -a localhost:8001 `
+```
+mkdocs serve
+```
 
 ## Build
 
