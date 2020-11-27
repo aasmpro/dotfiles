@@ -17,6 +17,9 @@ echo "Deleting 'gh-pages' branch"
 {
     git branch -D gh-pages
 } || {}
+{
+    git push origin --delete gh-pages
+} || {}
 echo "Creating new 'gh-pages' branch"
 git checkout -b gh-pages
 echo "Building"
