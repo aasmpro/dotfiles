@@ -11,7 +11,7 @@ configs are located in `/etc/default/grub` so you should change this file for co
     sed -i 's/echo/#echo/g' /boot/grub/grub.cfg
     ```
 
-### [configs](../grub)
+### [configs](grub)
 
 ```
 {% include "OS/grub/grub" %}
