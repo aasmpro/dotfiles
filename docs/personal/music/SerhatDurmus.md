@@ -1,5 +1,0 @@
-- Karma *
-- La Calin *
-- Hislerim
-- Hola
-- Who Am I
