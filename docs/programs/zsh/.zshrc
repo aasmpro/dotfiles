@@ -1,19 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export ZSH="$HOME/.oh-my-zsh"
-export EDITOR=vim
-
 # export http_proxy=http://127.0.0.1:37241/
 # export https_proxy=$http_proxy
 # export ftp_proxy=$http_proxy
 # export rsync_proxy=$http_proxy
 # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
-
-# ZSH_THEME="robbyrussell"
-ZSH_THEME='agnoster'
-DEFAULT_USER='aasmpro'
-
+# export MANPATH="/usr/local/man:$MANPATH"
+# export LANG=en_US.UTF-8
+# export ARCHFLAGS="-arch x86_64"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
@@ -25,6 +20,12 @@ DEFAULT_USER='aasmpro'
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 # HIST_STAMPS="mm/dd/yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
+
+export ZSH="$HOME/.oh-my-zsh"
+export EDITOR=vim
+
+ZSH_THEME='agnoster'
+DEFAULT_USER='aasmpro'
 
 plugins=(
 	git
@@ -53,20 +54,24 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# export MANPATH="/usr/local/man:$MANPATH"
-# export LANG=en_US.UTF-8
-# export ARCHFLAGS="-arch x86_64"
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # base aliases
+bzsh() {
+    cp ~/.zshrc ~/dev/dotfiles/docs/programs/zsh;
+    cd ~/dev/dotfiles;
+    ga .;
+    gcmsg "feat: new .zshrc file";
+    ggpush;
+}    
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
-alias bzsh='cp ~/.zshrc ~/dev/dotfiles/zsh/'
 alias gzsh='gedit ~/.zshrc && szsh'
-alias cds='cd ~/dev/t2b/spider && sa'
-alias cdp='cd ~/dev/t2b/panda && sa'
-alias cdd='cd ~/dev/dotfiles'
 alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _fsrt'
+
+# projects
+alias cdp='cd ~/dev/t2b/panda && sa'
+alias cda='cd ~/dev/maaxu/maaxu && sa'
+alias cdm='cd ~/dev/scf/Matrix && sa'
+alias cdd='cd ~/dev/dotfiles'
 
 # network aliases
 alias wre='nmcli device wifi rescan'
@@ -74,6 +79,7 @@ alias wls='wre && nmcli device wifi list'
 alias wco='wre && nmcli device wifi connect'
 alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
 alias iip='ip=$(mip); nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)//" | sed "s|$ip|$ip *|"'
+alias adl='aria2c -j1 -s10'
 
 # python aliases
 alias py='python'
@@ -119,67 +125,59 @@ gmd() {
     ggpush;
     gcd;
 }
-alias gdd='gd develop'
+alias gddd='gd develop'
 alias gdds='gd develop --stat'
+alias gdmd='gd master'
+alias gdms='gd master --stat'
+alias gbdall='gb | grep -v master | grep -v develop | xargs git branch -D'
 
 # database aliases
 alias dbm='mysql -u root'
 alias dbe='mysql -u root -e'
-# alias dbgsp='scp spider:$(ssh spider "ls -t /home/reza/backup/t2b-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/t2b_db.tar.gz'
-# alias dbgpa='scp spider:$(ssh spider "ls -t /home/reza/backup/panda-database-backups/$(date +%Y)/$(date +%m)/* | head -1") /tmp/panda_db.tar.gz'
 alias dbxsp='dbgsp && tar -C /tmp -xf /tmp/t2b_db.tar.gz'
 alias dbxpa='dbgpa && tar -C /tmp -xf /tmp/panda_db.tar.gz'
 alias dbcsp='dbe "drop database IF EXISTS spider; create database spider;"'
 alias dbcpa='dbe "drop database IF EXISTS panda; create database panda;"'
-alias dbcpp='dbe "drop database IF EXISTS poolipixel; create database poolipixel;"'
-# alias dbsp='dbxsp && mysql -u root -p -e "drop database IF EXISTS spider; create database spider; use spider; source /tmp/latest_backup.sql;"'
+alias dbcma='dbe "drop database IF EXISTS maaxu; create database maaxu;"'
+
+works() {
+    if [ -z "$1" ]
+    then
+        cat -n ~/.works
+    else
+        if [ -z "$2" ]
+        then
+            if [ "$1" = "v" ]
+            then
+                vim ~/.works
+            else
+                sed -i $1 ~/.works
+            fi
+        else
+            if [[ "$1" =~ "^([0-9]+i)$" ]]
+            then
+                cmd="$1"
+                unset $@[1]
+                echo cmd
+                echo $@
+                # sed -i $@ ~/.works
+            else
+                echo $@ >> ~/.works
+            fi
+        fi
+    fi
+}
+
+alias wk='works'
 
 dbgpa() {
-    ssh panda "ssh t2badmin@db1 'mysqldump -u root -p$1 panda > panda.sql'";
-    ssh panda "scp t2badmin@db1:~/panda.sql .";
-    scp panda:/home/t2badmin/panda.sql .;
+    ssh t2b-mobin1 "mysqldump --single-transaction --flush-logs -l --routines --quick -uroot -p$1 panda | gzip -f > panda.sql.gz";
+    scp t2b-mobin1:/root/panda.sql.gz .;
+    gzip -f -d panda.sql.gz;
 }
-
-dbgsp() {
-    ssh spider "mysqldump -u root -p$1 t2bclub > ~/spider.sql";
-    ssh spider "zip -o spider.zip spider.sql";
-    scp spider:/home/reza/spider.zip .;
-    unzip -o spider.zip;
-}
-
-alias dbsp='dbcsp && dbe "use spider; source spider.sql; set session sql_mode = ""; set global sql_mode = "";"'
 alias dbpa='dbcpa && dbe "use panda; source panda.sql; set session sql_mode = ""; set global sql_mode = "";"'
 dbnpa() {
     dbgpa $1 && dbpa
-}
-
-# deploy aliases
-deploy-panda() {
-    echo 'deploying panda'
-    ssh panda "ssh app1 './scripts/back.panda-redeploy.sh'";
-    echo 'app1 completed'
-    ssh panda "ssh app2 './scripts/back.panda-redeploy.sh'";
-    echo 'app2 completed'
-}
-
-deploy-tb() {
-    echo 'deploying t2bon'
-    ssh panda "ssh app1 './scripts/front.t2bon-redeploy.sh'";
-    echo 'app1 completed'
-    ssh panda "ssh app2 './scripts/front.t2bon-redeploy.sh'";
-    echo 'app2 completed'
-}
-
-deploy-sc() {
-    echo 'deploying service center'
-    ssh panda "ssh app2 './scripts/front.sc.t2bon-redeploy.sh'";
-    echo 'app2 completed'
-}
-
-deploy-ag() {
-    echo 'deploying agent'
-    ssh panda "ssh app1 './scripts/front.agent-t2bon-redeploy.sh'";
-    echo 'app1 completed'
 }
 
 # aur
@@ -201,6 +199,13 @@ ubk() {
 
 cbk() {
     sudo cp -r $1 $1.back
+}
+
+gameon() {
+    sudo systemctl stop docker.service;
+    sudo systemctl stop docker.socket;
+    sudo systemctl stop mariadb.service;
+    sudo systemctl stop memcached.service;
 }
 
 # programs aliases
