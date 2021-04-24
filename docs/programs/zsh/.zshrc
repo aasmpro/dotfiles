@@ -70,7 +70,7 @@ alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _
 # projects
 alias cdp='cd ~/dev/t2b/panda && sa'
 alias cda='cd ~/dev/maaxu/maaxu && sa'
-alias cdm='cd ~/dev/scf/Matrix && sa'
+alias cdm='cd ~/dev/scf/matrix && sa'
 alias cdd='cd ~/dev/dotfiles'
 
 # network aliases
