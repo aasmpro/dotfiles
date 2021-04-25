@@ -192,30 +192,39 @@ works() {
     then
         cat -n ~/.works
     else
-        if [ -z "$2" ]
+        if [ "$1" = "-v" ]
         then
-            if [ "$1" = "v" ]
+            vim ~/.works
+        elif [[ "$1" =~ "^(\$\!?d|[1-9]{1}[0-9]*\!?d|[1-9]{1}[0-9]*,[1-9]{1}[0-9]*\!?d|\/.*\/d)$" ]] && [ -z "$2" ]
+        then
+            sed -i $1 ~/.works
+        elif [ "$1" = "ddd" ] && [ -z "$2" ]
+        then
+            : > ~/.works
+        elif [ "$1" = "dd" ] && [ -z "$2" ]
+        then
+            sed -i '$d' ~/.works
+        elif [ "$1" = "d" ] && [ -z "$2" ]
+        then
+            sed -i '1d' ~/.works
+        elif [ "$1" = "-s" ]
+        then
+            if [ -z "$2" ]
             then
-                vim ~/.works
+                echo "missing sed arguments"
+                return
             else
-                sed -i $1 ~/.works
+                sed -i $* ~/.works
             fi
         else
-            if [[ "$1" =~ "^([0-9]+i)$" ]]
-            then
-                cmd="$1"
-                unset $@[1]
-                echo cmd
-                echo $@
-                # sed -i $@ ~/.works
-            else
-                echo $@ >> ~/.works
-            fi
+            echo $* >> ~/.works
         fi
     fi
 }
 
-alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _fsrt'
+fsrt() { 
+    iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 
+}
 
 repdf() {
     # -dPDFSETTINGS can be: printer, ebook and screen
