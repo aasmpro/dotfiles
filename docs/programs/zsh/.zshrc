@@ -65,7 +65,6 @@ bzsh() {
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
 alias gzsh='gedit ~/.zshrc && szsh'
-alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _fsrt'
 
 # projects
 alias cdp='cd ~/dev/t2b/panda && sa'
@@ -138,37 +137,8 @@ alias dbxsp='dbgsp && tar -C /tmp -xf /tmp/t2b_db.tar.gz'
 alias dbxpa='dbgpa && tar -C /tmp -xf /tmp/panda_db.tar.gz'
 alias dbcsp='dbe "drop database IF EXISTS spider; create database spider;"'
 alias dbcpa='dbe "drop database IF EXISTS panda; create database panda;"'
-alias dbcma='dbe "drop database IF EXISTS maaxu; create database maaxu;"'
-
-works() {
-    if [ -z "$1" ]
-    then
-        cat -n ~/.works
-    else
-        if [ -z "$2" ]
-        then
-            if [ "$1" = "v" ]
-            then
-                vim ~/.works
-            else
-                sed -i $1 ~/.works
-            fi
-        else
-            if [[ "$1" =~ "^([0-9]+i)$" ]]
-            then
-                cmd="$1"
-                unset $@[1]
-                echo cmd
-                echo $@
-                # sed -i $@ ~/.works
-            else
-                echo $@ >> ~/.works
-            fi
-        fi
-    fi
-}
-
-alias wk='works'
+alias dbcmx='dbe "drop database IF EXISTS maaxu; create database maaxu;"'
+alias dbcma='dbe "drop database IF EXISTS matrix; create database matrix;"'
 
 dbgpa() {
     ssh t2b-mobin1 "mysqldump --single-transaction --flush-logs -l --routines --quick -uroot -p$1 panda | gzip -f > panda.sql.gz";
@@ -212,5 +182,66 @@ gameon() {
 alias photoshop='wine $HOME/.photoshop/PhotoshopPortable.exe'
 alias ngrok='$HOME/.ngrok2/ngrok'
 alias pycharm='$HOME/.pycharm/bin/pycharm.sh'
+
+# others
+alias wk='works'
+works() {
+    if [ -z "$1" ]
+    then
+        cat -n ~/.works
+    else
+        if [ -z "$2" ]
+        then
+            if [ "$1" = "v" ]
+            then
+                vim ~/.works
+            else
+                sed -i $1 ~/.works
+            fi
+        else
+            if [[ "$1" =~ "^([0-9]+i)$" ]]
+            then
+                cmd="$1"
+                unset $@[1]
+                echo cmd
+                echo $@
+                # sed -i $@ ~/.works
+            else
+                echo $@ >> ~/.works
+            fi
+        fi
+    fi
+}
+
+alias fsrt='_fsrt() { iconv -t UTF-8 -f WINDOWS-1256//TRANSLIT $1 >> new_$1 }; _fsrt'
+
+repdf() {
+    # -dPDFSETTINGS can be: printer, ebook and screen
+    if [ -z "$1" ]
+    then
+        echo "missing input file";
+        return
+    fi
+    if [[ "$2" =~ "^(printer|ebook|screen)$" ]]
+    then
+        _type=$2
+        _output=new_$1
+    elif [ -z "$2" ]
+    then
+        _type=ebook
+        _output=new_$1
+    else
+        _output=$2
+        if [[ "$3" =~ "^(printer|ebook|screen)$" ]]
+        then
+            _type=$3
+        else
+            _type=ebook
+        fi
+    fi
+
+    gs -sDEVICE=pdfwrite -dPDFSETTINGS=/$_type -dNOPAUSE -dBATCH -sOutputFile=$_output $1;
+}
+
 
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
