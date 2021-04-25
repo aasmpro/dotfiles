@@ -62,7 +62,7 @@ bzsh() {
     ga .;
     gcmsg "feat: new .zshrc file";
     ggpush;
-    cd _pwd;
+    cd $_pwd;
 }    
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
