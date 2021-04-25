@@ -56,13 +56,13 @@ source $ZSH/oh-my-zsh.sh
 
 # base aliases
 bzsh() {
-    _pwd=$PWD
-    cp ~/.zshrc ~/dev/dotfiles/docs/programs/zsh;
-    cd ~/dev/dotfiles;
-    ga .;
-    gcmsg "feat: new .zshrc file";
-    ggpush;
-    cd $_pwd
+    $(
+        cp ~/.zshrc ~/dev/dotfiles/docs/programs/zsh;
+        cd ~/dev/dotfiles;
+        ga .;
+        gcmsg "feat: new .zshrc file";
+        ggpush;
+    )
 }    
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
