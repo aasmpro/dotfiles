@@ -81,6 +81,9 @@ alias wco='wre && nmcli device wifi connect'
 alias mip='ip address | grep "inet" | grep -v "inet6" | grep "global" | sed "s/\/.*//" | sed "s/.*inet /http:\/\//"'
 alias iip='ip=$(mip); nmap -sP $(mip | sed "s/http:\/\///" | sed "s/\.\([^.]*\)$/\.0\/24/") | grep "Nmap scan" | grep -v "_gateway" | sed "s/Nmap scan report for /http:\/\//" | sed "s/$USER (//" | sed "s/)//" | sed "s|$ip|$ip *|"'
 alias adl='aria2c -j1 -s10'
+alias wgu='wg-quick up wg0'
+alias wgd='wg-quick down wg0'
+alias fdns='/usr/local/bin/dnschange'
 
 # python aliases
 alias py='python'
@@ -126,8 +129,11 @@ gmd() {
     ggpush;
     gcd;
 }
+alias gcdm='gco demo'
 alias gddd='gd develop'
 alias gdds='gd develop --stat'
+alias gddmd='gd demo'
+alias gddms='gd demo --stat'
 alias gdmd='gd master'
 alias gdms='gd master --stat'
 alias gbdall='gb | grep -v master | grep -v develop | xargs git branch -D'
