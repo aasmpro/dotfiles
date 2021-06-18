@@ -67,6 +67,7 @@ bzsh() {
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
 alias gzsh='gedit ~/.zshrc && szsh'
+alias c='code .'
 
 # projects
 alias cdp='cd ~/dev/t2b/panda && sa'
