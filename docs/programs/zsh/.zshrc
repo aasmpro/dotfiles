@@ -90,6 +90,12 @@ alias fdns='/usr/local/bin/dnschange'
 alias py='python'
 alias pyc='python -c'
 
+# python packages aliases
+alias pypb='py setup.py sdist'
+alias pypc='twine check dist/*'
+alias pyput='twine upload --repository testpypi dist/*'
+alias pypup='twine upload dist/*'
+
 # pip aliases
 alias pir='pip install -r requirements.txt'
 alias pin='pip install'
