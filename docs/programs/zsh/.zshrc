@@ -93,6 +93,7 @@ alias pyc='python -c'
 # pip aliases
 alias pir='pip install -r requirements.txt'
 alias pin='pip install'
+alias pine='pin --editable'
 alias pun='pip uninstall'
 alias pif='pip freeze > requirements.txt'
 alias pil='pip list'
@@ -261,5 +262,5 @@ repdf() {
     gs -sDEVICE=pdfwrite -dPDFSETTINGS=/$_type -dNOPAUSE -dBATCH -sOutputFile=$_output $1;
 }
 
-
+alias vpn="echo -n mxpcpnDNo8 | sudo openconnect -b s1.bonclub.ir -u aasmpro --passwd-on-stdin"
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
