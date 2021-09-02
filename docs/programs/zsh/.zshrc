@@ -67,7 +67,23 @@ bzsh() {
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
 alias gzsh='gedit ~/.zshrc && szsh'
+
+# vscode
 alias c='code .'
+upcode() {
+    echo current version: $(code -v | head -n 1);
+    echo unzip source;
+    mkdir -p /tmp/vscode-files/;
+    tar -C /tmp/vscode-files -xf $1;
+    echo remove current version
+    sudo rm -rf /opt/vscode;
+    echo replace new version
+    sudo cp -r /tmp/vscode-files/* /opt/vscode;
+    echo create link
+    sudo ln -sf /opt/vscode/bin/code /usr/bin/code
+    echo updated succesfully!
+    echo current version: $(code -v | head -n 1);
+}
 
 # projects
 alias cdp='cd ~/dev/t2b/panda && sa'
@@ -92,6 +108,7 @@ alias pyc='python -c'
 
 # python packages aliases
 alias pypb='py setup.py sdist'
+alias pypbb='py -m build'
 alias pypc='twine check dist/*'
 alias pyput='twine upload --repository testpypi dist/*'
 alias pypup='twine upload dist/*'
@@ -268,5 +285,4 @@ repdf() {
     gs -sDEVICE=pdfwrite -dPDFSETTINGS=/$_type -dNOPAUSE -dBATCH -sOutputFile=$_output $1;
 }
 
-alias vpn="echo -n mxpcpnDNo8 | sudo openconnect -b s1.bonclub.ir -u aasmpro --passwd-on-stdin"
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
