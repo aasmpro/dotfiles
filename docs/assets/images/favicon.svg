@@ -4,5 +4,5 @@
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="48pt" height="48pt" viewBox="0 0 48 48"
  preserveAspectRatio="xMidYMid meet">
-  <circle cx="50%" cy="50%" r="8pt" fill="white" />
+  <circle cx="50%" cy="50%" r="8pt" fill="#f9f5d7" opacity="90%" />
 </svg>
