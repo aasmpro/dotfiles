@@ -32,7 +32,6 @@ plugins=(
 	gitfast
 
 	python
-	django
 	pip
 	virtualenv
 
@@ -67,6 +66,15 @@ bzsh() {
 alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
 alias gzsh='gedit ~/.zshrc && szsh'
+alias docps='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}"'
+
+# cleanup
+cleanup() {
+    sudo rm -rf /var/log/journal/*
+    sudo rm -rf /var/cache/*
+    sudo rm -rf /var/tmp/*
+    sudo rm -rf /tmp/*
+}
 
 # vscode
 alias c='code .'
@@ -81,15 +89,9 @@ upcode() {
     sudo cp -r /tmp/vscode-files/* /opt/vscode;
     echo create link
     sudo ln -sf /opt/vscode/bin/code /usr/bin/code
-    echo updated succesfully!
+    echo updated successfully!
     echo current version: $(code -v | head -n 1);
 }
-
-# projects
-alias cdp='cd ~/dev/t2b/panda && sa'
-alias cda='cd ~/dev/maaxu/maaxu && sa'
-alias cdm='cd ~/dev/scf/matrix && sa'
-alias cdd='cd ~/dev/dotfiles'
 
 # network aliases
 alias wre='nmcli device wifi rescan'
@@ -101,6 +103,12 @@ alias adl='aria2c -j1 -s10'
 alias wgu='wg-quick up wg0'
 alias wgd='wg-quick down wg0'
 alias fdns='/usr/local/bin/dnschange'
+ssht() {
+    ssh -D $([ -z "$2" ] && echo 1337 || echo $2) -f -C -q -N $1;
+}
+sshtd() {
+    kill -9 $(ps aux | grep "ssh -D" | head -n 1 | awk '{print $2}');
+}
 
 # python aliases
 alias py='python'
@@ -114,13 +122,14 @@ alias pyput='twine upload --repository testpypi dist/*'
 alias pypup='twine upload dist/*'
 
 # pip aliases
-alias pir='pip install -r requirements.txt'
+alias pir='_pir() { pip install -r $([ -z "$1" ] && echo requirements.txt || echo $1) }; _pir'
 alias pin='pip install'
+alias pun='pin -U'
 alias pine='pin --editable'
-alias pun='pip uninstall'
-alias pif='pip freeze > requirements.txt'
+alias puni='pip uninstall'
+alias pif='_pif() { pip freeze > $([ -z "$1" ] && echo requirements.txt || echo "$1") }; _pif'
 alias pil='pip list'
-alias pup='python -m pip install -U pip'
+alias pupip='python -m pip install -U pip'
 
 # django aliases
 alias dj='python manage.py'
@@ -141,10 +150,26 @@ alias djbm='_djbm() { mkdir -p $1; djfm -exec cp --parents \{\} $1 \;}; _djbm'
 alias djcm='_djcm() { cp -r $1/. .}; _djcm'
 
 # env aliases
-alias vc='virtualenv _env'
-alias vd='rm -rf _env'
-alias sa='source _env/bin/activate && which python'
+alias vd='[ -d "_env" ] && rm -rf _env || true'
+alias vc='[ ! -d "_env" ] && virtualenv _env || true'
+alias sa='[ -d "_env" ] && source _env/bin/activate && which python || true'
 alias da='deactivate'
+le() {
+    set -o allexport;
+    source ./$([ -z "$1" ] && echo .env || echo $1);
+}
+sle() {
+    _file_name=$([ -z "$1" ] && echo .env || echo $1)
+    [ -f $_file_name ] && le $_file_name || true;
+}
+
+# projects
+function cd {
+    builtin cd "$@" && sa && sle;
+}
+alias cdm='cd ~/dev/scf/matrix'
+alias cdr='cd ~/dev/cf/radix'
+alias cdd='cd ~/dev/dotfiles'
 
 # git aliases
 alias ggg='gcd && gst && ggpush && gcm && gst && gm develop && gst && ggpush && gcd'
@@ -166,21 +191,30 @@ alias gbdall='gb | grep -v master | grep -v develop | xargs git branch -D'
 # database aliases
 alias dbm='mysql -u root'
 alias dbe='mysql -u root -e'
-alias dbxsp='dbgsp && tar -C /tmp -xf /tmp/t2b_db.tar.gz'
-alias dbxpa='dbgpa && tar -C /tmp -xf /tmp/panda_db.tar.gz'
-alias dbcsp='dbe "drop database IF EXISTS spider; create database spider;"'
-alias dbcpa='dbe "drop database IF EXISTS panda; create database panda;"'
-alias dbcmx='dbe "drop database IF EXISTS maaxu; create database maaxu;"'
-alias dbcma='dbe "drop database IF EXISTS matrix; create database matrix;"'
-
-dbgpa() {
-    ssh t2b-mobin1 "mysqldump --single-transaction --flush-logs -l --routines --quick -uroot -p$1 panda | gzip -f > panda.sql.gz";
-    scp t2b-mobin1:/root/panda.sql.gz .;
-    gzip -f -d panda.sql.gz;
+dbdump() {
+    mysqldump --single-transaction --flush-logs -l --quick -u root $1 > $1.sql;
 }
-alias dbpa='dbcpa && dbe "use panda; source panda.sql; set session sql_mode = ""; set global sql_mode = "";"'
-dbnpa() {
-    dbgpa $1 && dbpa
+dbc() {
+    dbe "drop database IF EXISTS $1; create database $1";
+}
+dbd() {
+    ssh scf-main "mysqldump --single-transaction --flush-logs -l --routines --quick -uroot -p$2 $1 | gzip -f > $1.sql.gz";
+}
+dbf() {
+    scp scf-main:/root/$1.sql.gz .;
+}
+dbg() {
+    dbd $1 $2;
+    dbf $1;
+    gze $1.sql.gz;
+}
+dbs() {
+    dbc $1;
+    dbe "use $1; source $1.sql; set session sql_mode = ""; set global sql_mode = "";"
+}
+dbsn() {
+    dbg $1 $2;
+    dbs $1;
 }
 
 # aur
@@ -195,20 +229,11 @@ aur() {
 mbk() {
     sudo mv $1 $1.back
 }
-
 ubk() {
     sudo mv $1 $(sed 's/.\{5\}$//' <<< $1)
 }
-
 cbk() {
     sudo cp -r $1 $1.back
-}
-
-gameon() {
-    sudo systemctl stop docker.service;
-    sudo systemctl stop docker.socket;
-    sudo systemctl stop mariadb.service;
-    sudo systemctl stop memcached.service;
 }
 
 # programs aliases
@@ -217,6 +242,18 @@ alias ngrok='$HOME/.ngrok2/ngrok'
 alias pycharm='$HOME/.pycharm/bin/pycharm.sh'
 
 # others
+gameon() {
+    fdns;
+    sudo systemctl stop docker.service;
+    sudo systemctl stop docker.socket;
+    sudo systemctl stop mariadb.service;
+    sudo systemctl stop memcached.service;
+}
+
+gze() {
+    gzip -k -f -d $1;
+}
+
 alias wk='works'
 works() {
     if [ -z "$1" ]
