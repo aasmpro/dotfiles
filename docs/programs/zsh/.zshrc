@@ -217,6 +217,16 @@ dbsn() {
     dbs $1;
 }
 
+dbsnm() {
+    dbg matrix $1;
+    dbs matrix;
+}
+
+dbsnr() {
+    dbg radix $1;
+    dbs radix;
+}
+
 # aur
 aur() {
     rm -rf $HOME/.aur_tmp;
@@ -321,5 +331,15 @@ repdf() {
 
     gs -sDEVICE=pdfwrite -dPDFSETTINGS=/$_type -dNOPAUSE -dBATCH -sOutputFile=$_output $1;
 }
+
+folderize() {
+    for x in *; do
+        fn=${x% - *}
+        mkdir -p "$fn"
+        mv "$x" "$fn/"
+    done
+}
+
+alias dota2='~/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh "./.local/share/Steam/steamapps/common/dota 2 beta/game/bin/linuxsteamrt64/dota2"'
 
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
