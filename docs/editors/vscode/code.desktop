@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Code
+Comment=VSCode
+Exec=code
+Icon=code
+Terminal=false
