@@ -24,7 +24,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=vim
 
-ZSH_THEME='agnoster'
+ZSH_THEME='af-magic'
 DEFAULT_USER='aasmpro'
 
 plugins=(
@@ -52,6 +52,14 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# ubuntu
+alias aptup="sudo apt update && sudo apt upgrade"
+alias aptin="sudo apt install"
+alias aptre="sudp apt remove"
+alias aptar="sudo apt autoremove"
+alias aptcl="sudo apt autoclean"
+alias aptac="aptar && aptcl"
 
 # base aliases
 bzsh() {
@@ -111,8 +119,8 @@ sshtd() {
 }
 
 # python aliases
-alias py='python'
-alias pyc='python -c'
+alias py='python3'
+alias pyc='python3 -c'
 
 # python packages aliases
 alias pypb='py setup.py sdist'
