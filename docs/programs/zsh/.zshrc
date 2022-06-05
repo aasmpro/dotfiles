@@ -54,7 +54,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # ubuntu
-alias aptup="sudo apt update && sudo apt upgrade"
+alias aptup="sudo apt update && sudo apt upgrade -y"
 alias aptin="sudo apt install"
 alias aptre="sudp apt remove"
 alias aptar="sudo apt autoremove"
@@ -75,6 +75,9 @@ alias szsh='source ~/.zshrc'
 alias vzsh='vim ~/.zshrc && szsh'
 alias gzsh='gedit ~/.zshrc && szsh'
 alias docps='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}"'
+
+# vpn
+alias outline='/opt/Outline-Client.AppImage'
 
 # cleanup
 cleanup() {
@@ -351,3 +354,8 @@ folderize() {
 alias dota2='~/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh "./.local/share/Steam/steamapps/common/dota 2 beta/game/bin/linuxsteamrt64/dota2"'
 
 PATH="$HOME/.local/bin:/snap/bin:$HOME/.node_modules_global/bin:$HOME/.deno/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
