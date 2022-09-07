@@ -1,12 +1,12 @@
 ## Site settings
-site_name: DotFiles
-site_url: https://abolfazlamiri.ir/dotfiles
+site_name: GruvDoc
+site_url: https://abolfazlamiri.ir/gruvdoc
 site_author: Abolfazl Amiri
-site_description: Personal DotFiles
+site_description: Pre-configured MkDocs project with GruvBox colors and JetBrainsMono font.
 
 ## Repo settings
-repo_name: DotFiles
-repo_url: https://github.com/aasmpro/dotfiles
+repo_name: GruvDoc
+repo_url: https://github.com/aasmpro/gruvdoc
 edit_uri: ""
 
 ## Theme settings
@@ -17,8 +17,8 @@ theme:
   ### if you want to use default material theme
   palette:
     scheme: gruvbox
-    primary: black
-    accent: blue
+    primary: green
+    accent: green
   ### uncomment to use default material theme
   # palette:
   #   scheme: default
@@ -47,16 +47,16 @@ extra:
   ## Version
   ### this extra key generates a version text after copyright
   ### must have name and link
-  # version:
-  #   name: v1.0.0
-  #   link: https://github.com/aasmpro/gruvdoc/releases/tag/v1.0.0
+  version:
+    name: v1.0.4
+    link: https://github.com/aasmpro/gruvdoc/releases/tag/v1.0.4
 
   ## License
   ### this extra key generates a license text after copyright
   ### must have name and link
   license:
-    name: GPL3+
-    link: https://github.com/aasmpro/dotfiles/blob/master/LICENSE
+    name: MIT
+    link: https://github.com/aasmpro/gruvdoc/blob/master/LICENSE
 
   ## Made with
   ### this extra key can set `Made with ...` text in footer
@@ -74,7 +74,7 @@ use_directory_urls: true
 #   - Home: index.md
 
 ## Copyright
-copyright: DotFiles
+copyright: GruvDoc
 
 ## Extra js files
 extra_javascript:
@@ -110,7 +110,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.caret
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.snippets
   - pymdownx.tabbed
   - pymdownx.tilde
