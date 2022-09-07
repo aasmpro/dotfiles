@@ -17,7 +17,7 @@ setuptools.setup(
     url="https://github.com/aasmpro/simplesm",
     packages=setuptools.find_packages(),
     classifiers=[
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",

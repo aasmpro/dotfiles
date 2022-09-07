@@ -1,12 +1,12 @@
 ## Site settings
-site_name: GruvDoc
-site_url: https://abolfazlamiri.ir/gruvdoc
+site_name: DotFiles
+site_url: https://abolfazlamiri.ir/dotfiles
 site_author: Abolfazl Amiri
-site_description: Pre-configured MkDocs project with GruvBox colors and JetBrainsMono font.
+site_description: Personal DotFiles
 
 ## Repo settings
-repo_name: GruvDoc
-repo_url: https://github.com/aasmpro/gruvdoc
+repo_name: DotFiles
+repo_url: https://github.com/aasmpro/dotfiles
 edit_uri: ""
 
 ## Theme settings
@@ -17,8 +17,8 @@ theme:
   ### if you want to use default material theme
   palette:
     scheme: gruvbox
-    primary: green
-    accent: green
+    primary: black
+    accent: blue
   ### uncomment to use default material theme
   # palette:
   #   scheme: default
@@ -47,16 +47,16 @@ extra:
   ## Version
   ### this extra key generates a version text after copyright
   ### must have name and link
-  version:
-    name: v1.0.4
-    link: https://github.com/aasmpro/gruvdoc/releases/tag/v1.0.4
+  # version:
+  #   name: v1.0.4
+  #   link: https://github.com/aasmpro/gruvdoc/releases/tag/v1.0.4
 
   ## License
   ### this extra key generates a license text after copyright
   ### must have name and link
   license:
     name: MIT
-    link: https://github.com/aasmpro/gruvdoc/blob/master/LICENSE
+    link: https://github.com/aasmpro/dotfiles/blob/master/LICENSE
 
   ## Made with
   ### this extra key can set `Made with ...` text in footer
